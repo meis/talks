@@ -154,105 +154,129 @@ body {
   text-decoration: none;
 }
 
-.header-about-me       header span:after { content: "Sobre mi"; }
-.header-the-talk       header span:after { content: "La charla"; }
-.header-the-game       header span:after { content: "El juego"; }
-.header-algorithms     header span:after { content: "Como ganar?"; }
-.header-minimax        header span:after { content: "Algorismo minimax"; }
-.header-alpha-beta     header span:after { content: "Alpha Beta pruning"; }
-.header-implementation header span:after { content: "Implementación"; }
-.header-benchmarks     header span:after { content: "Funciona?"; }
-.header-conclusion     header span:after { content: "Conclusiones"; }
-.header-credits        header span:after { content: "Créditos"; }
-.header-questions      header span:after { content: "Preguntas"; }
 
-.header-2    section.present,
-.header-4    section.present,
-.header-8    section.present,
-.header-16   section.present,
-.header-32   section.present,
-.header-64   section.present,
-.header-128  section.present,
-.header-256  section.present,
-.header-512  section.present,
-.header-1024 section.present,
-.header-2048 section.present {
+/*********************************************
+ * FRAGMENT THROUGH
+ *********************************************/
+.header-visible section.present {
   padding-top: 70px;
 }
 
-.header-2    header,
-.header-4    header,
-.header-8    header,
-.header-16   header,
-.header-32   header,
-.header-64   header,
-.header-128  header,
-.header-256  header,
-.header-512  header,
-.header-1024 header,
-.header-2048 header {
+.header-visible header {
     position: absolute;
     top: 30px;
     width: 100%;
     text-align: center;
     z-index:500;
-    font-size:1.2em;
-}
-.header-2    header span,
-.header-4    header span,
-.header-8    header span,
-.header-16   header span,
-.header-32   header span,
-.header-64   header span,
-.header-128  header span,
-.header-256  header span,
-.header-512  header span,
-.header-1024 header span,
-.header-2048 header span {
-  border: 5px solid #BBADA0;
-  border-radius: 4px;
-  padding: 2px 15px;
+    font-size:1em;
 }
 
-.header-2 header span {
+.header-visible header .tile .tile-text {
+  display: none;
+}
+
+.header-visible header .tile {
+  border: 5px solid #BBADA0;
+  border-radius: 4px;
+  padding: 5px 30px;
+  margin: 0 3px;
+}
+
+.header-visible header .tile-2 {
   background: #eee4da;
 }
-.header-4 header span {
+.header-visible header .tile-4 {
   background: #ede0c8;
 }
-.header-8 header span {
+.header-visible header .tile-8 {
   color: #f9f6f2;
   background: #f2b179;
 }
-.header-16 header span {
+.header-visible header .tile-16 {
   color: #f9f6f2;
   background: #f59563;
 }
-.header-32 header span {
+.header-visible header .tile-32 {
   color: #f9f6f2;
   background: #f67c5f;
 }
-.header-64 header span {
+.header-visible header .tile-64 {
   color: #f9f6f2;
   background: #f65e3b;
 }
-.header-128 header span {
+.header-visible header .tile-128 {
   color: #f9f6f2;
   background: #edcf72;
 }
-.header-256 header span {
+.header-visible header .tile-256 {
   color: #f9f6f2;
   background: #edcc61;
 }
-.header-512 header span {
+.header-visible header .tile-512 {
   color: #f9f6f2;
   background: #edc850;
 }
-.header-1024 header span {
+.header-visible header .tile-1024 {
   color: #f9f6f2;
   background: #edc53f;
 }
-.header-2048 header span {
+.header-visible header .tile-2048 {
   color: #f9f6f2;
   background: #edc22e;
+}
+
+.header-visible.header-2 header .tile-2 .tile-text {
+  display: inline-block;
+  max-width: 15%;
+  width: 15%;
+}
+.header-visible.header-4 header .tile-4 .tile-text {
+  display: inline-block;
+  max-width: 15%;
+  width: 15%;
+}
+.header-visible.header-8 header .tile-8 .tile-text {
+  display: inline-block;
+  max-width: 15%;
+  width: 15%;
+}
+.header-visible.header-16 header .tile-16 .tile-text {
+  display: inline-block;
+  max-width: 15%;
+  width: 15%;
+}
+.header-visible.header-32 header .tile-32 .tile-text {
+  display: inline-block;
+  max-width: 15%;
+  width: 15%;
+}
+.header-visible.header-64 header .tile-64 .tile-text {
+  display: inline-block;
+  max-width: 15%;
+  width: 15%;
+}
+.header-visible.header-128 header .tile-128 .tile-text {
+  display: inline-block;
+  max-width: 15%;
+  width: 15%;
+}
+.header-visible.header-256 header .tile-256 .tile-text {
+  display: inline-block;
+  max-width: 15%;
+  width: 15%;
+}
+.header-visible.header-512 header .tile-512 .tile-text {
+  display: inline-block;
+  max-width: 15%;
+  width: 15%;
+}
+.header-visible.header-1024 header .tile-1024 .tile-text {
+  display: inline-block;
+  max-width: 15%;
+  width: 15%;
+}
+.header-visible.header-2048 header .tile-2048 .tile-text {
+  display: inline-block;
+  max-width: 15%;
+  width: 15%;
 }
