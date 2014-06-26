@@ -24,6 +24,9 @@ body {
   background: #d33682;
   text-shadow: none; }
 
+.reveal .code {
+  font-family: "Courier New";
+}
 /*********************************************
  * HEADERS
  *********************************************/
@@ -69,9 +72,14 @@ body {
 /*********************************************
  * IMAGES
  *********************************************/
+.reveal section img.crude {
+  border: 0;
+  float: left;
+  margin: 0;
+}
+
 .reveal section img {
   margin: 15px 0px;
-  background: none repeat scroll 0% 0% #BBADA0;
   border: 10px solid #BBADA0;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   -webkit-transition: all .2s linear;
@@ -87,9 +95,21 @@ body {
  *********************************************/
 .reveal section ul li {
   list-style: none;
+  margin-right: 1em;
 }
 .reveal section ul li:before {
-  content: "\0BB \020";
+  content: "· ";
+  margin-left: -1.5em; margin-right: .100em;
+}
+
+.reveal section ul.do li:before {
+  content: ' ✔';
+  color: green;
+}
+
+.reveal section ul.dont li:before {
+  content: ' ✗';
+  color: red;
 }
 
 /*********************************************
@@ -171,7 +191,7 @@ body {
     font-size:1em;
 }
 
-.header-visible header .tile .tile-text {
+header .tile .tile-text {
   display: none;
 }
 

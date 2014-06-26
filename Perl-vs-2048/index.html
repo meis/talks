@@ -44,13 +44,13 @@
                 <span class="tile tile-2">   <span class="tile-text">Sobre mi</span></span>
                 <span class="tile tile-4">   <span class="tile-text">La charla</span></span>
                 <span class="tile tile-8">   <span class="tile-text">El juego</span></span>
-                <span class="tile tile-16">  <span class="tile-text">Como ganar?</span></span>
+                <span class="tile tile-16">  <span class="tile-text">El plan</span></span>
                 <span class="tile tile-32">  <span class="tile-text">Minimax</span></span>
-                <span class="tile tile-64">  <span class="tile-text">Alpha Beta</span></span>
-                <span class="tile tile-128"> <span class="tile-text">Implementación</span></span>
+                <span class="tile tile-64">  <span class="tile-text">Las piezas</span></span>
+                <span class="tile tile-128"> <span class="tile-text">Mi código</span></span>
                 <span class="tile tile-256"> <span class="tile-text">Funciona?</span></span>
-                <span class="tile tile-512"> <span class="tile-text">Conclusiones</span></span>
-                <span class="tile tile-1024"><span class="tile-text">Créditos</span></span>
+                <span class="tile tile-512"> <span class="tile-text">A mejorar</span></span>
+                <span class="tile tile-1024"><span class="tile-text">Conclusiones</span></span>
                 <span class="tile tile-2048"><span class="tile-text">Preguntas</span></span>
               </div>
             </header>
@@ -64,7 +64,6 @@
 
 				<section class="about-me" data-state="header-2 header-visible">
                   <div style="">
-                    <img width="320" height="299" src="img/whoami.jpg" alt="About me">
                     <ul>
                       <li>Marc Egea i Sala (<a href="https://github.com/meis">github.com/meis</a>)</li>
                       <li class="fragment"><a href="http://barcelona.pm.org/">Barcelona.pm</a></li>
@@ -77,76 +76,349 @@
 				</section>
 
 				<section class="about-talk" data-state="header-4 header-visible">
+				  <section>
+                    <h3><a href="http://workshop.granada.pm">Granada
+                            Perl Workshop'14</a></h3>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                    <p>Disponible en github:</p>
+                    <p><a href="https://github.com/meis/talks/tree/master/Perl-vs-2048">https://github.com/meis/talks/tree/master/Perl-vs-2048</a></p>
+                  </section>
 					<section>
                       <ul>
-                        <li>Para el <a href="http://workshop.granada.pm">Workshop de Granada</a></li>
-                        <li class="fragment through-after">Pensada durante mucho tiempo y exhaustivamente testeado</li>
-                        <li class="fragment">Primero envíe la propuesta y luego corrí <span class="fragment">(<b>idiota</b>)</span></li>
+                        <li class>Una charla distinta<span class="fragment">: código que juegue (y gane) al 2048</span></li>
+                        <li class="fragment through-after">Conclusiones de un proyecto pensado durante mucho tiempo y exhaustivamente testeado</li>
+                        <li class="fragment">Primero envíe la propuesta y luego ya a ver qué <span class="fragment">(<b>idiota</b>)</span></li>
+                        <li class="fragment">Llevaba un tiempo pensando en el tema
+                            <span class="fragment">("<a href="http://youtube.com/watch?v=f84n5oFoZBc">Hammock-DD</a>"ish by Rich Hickey)</span>
+                        </li>
+                        <li class="fragment">Empecé a programar el martes <span class="fragment">(¿lo logré?)</span></span></li>
                       </ul>
                     </section>
 					<section>
-                      <ul>
-                        <li>Me apetecía probar cosas nuevas</li>
-                        <li class="fragment">Código que juegue (y gane) al 2048</li>
-                        <li class="fragment"><a href="http://metacpan.org">CPAN</a> ayuda con los experimentos</li>
-                      </ul>
-                    </section>
-					<section>
-                        <h3>Interrupciones</h3>
-                        <ul class="fragment">
+                        <h3>Interrumpid</h3>
+                        <ul class="fragment do">
                           <li>Dudas</li>
                           <li>Comentarios</li>
-                          <li>Balbuceos (míos)</li>
+                          <li>Balbuceo o divago</li>
                         </ul>
-                        <ul class="fragment">
+                        <ul class="fragment dont">
                           <li>Está todo mal</li>
-                          <li>Hay un módulo que hace eso</li>
+                          <li>Ya hay un módulo que hace eso</li>
                           <li>Dejarme en ridículo en general</li>
                         </ul>
                     </section>
 				</section>
 
 				<section data-state="header-8 header-visible">
+                  <img src="img/2048.jpg" class="crude"/>
+                  <ul>
+                    <li>by <a href="http://gabrielecirulli.com/">Gabriele Cirulli</a>
+                      > <a href="https://itunes.apple.com/us/app/1024!/id823499224">1024</a>
+                      > <a href="http://asherv.com/threes/">Threes</a>
+                    </li>
+                    <li class="fragment">Famoso</li>
+                    <li class="fragment">Muy adictivo</li>
+                    <li class="fragment">Aleatorio (pero no mucho)</li>
+                  </ul>
 				</section>
 
 				<section data-state="header-16 header-visible">
+                  <ul>
+                    <li>El menor código posible</li>
+                    <li class="fragment">Menor tiempo de desarrollo</li>
+                    <li class="fragment">Buscar en <a href="http://stackoverflow.com/questions/22342854/what-is-the-optimal-algorithm-for-the-game-2048">Stack Overflow</a></li>
+                    <li class="fragment">Elegir uno</li>
+                    <li class="fragment">Minimax, me suena</li>
+                  </ul>
 				</section>
 
 				<section data-state="header-32 header-visible">
+					<section>
+                      <ul>
+                        <li>Algorismo de decisión (von Neumann 1926) </li>
+                        <li class="fragment">Minimiza las pérdidas en juegos con adversario</li>
+                        <li class="fragment">Modela el juego como un árbol</li>
+                        <li class="fragment">Utiliza una función de evaluación</li>
+                      </ul>
+                    </section>
+					<section>
+                      <img src="img/minimax-1-0.png" />
+                    </section>
+					<section>
+                      <img src="img/minimax-2-0.png" />
+                    </section>
+					<section>
+                      <img src="img/minimax-3-0.png" />
+                    </section>
+					<section>
+                      <img src="img/minimax-4-0.png" />
+                    </section>
+					<section>
+                      <img src="img/minimax-5-0.png" />
+                    </section>
+					<section>
+                      <img src="img/minimax-6-0.png" />
+                    </section>
+					<section>
+                      <h3>Poda alfa-beta</h3>
+                      <ul>
+                        <li class="fragment">Reduce el número de nodos evaluados</li>
+                        <li class="fragment">Minimax es una búsqueda en profundidad</li>
+                        <li class="fragment">&alpha; és la mejor opción hasta el momento</li>
+                        <li class="fragment">&beta; és la peor opción hasta el momento</li>
+                        <li class="fragment">Ignora los nodos que nunca se tendrán en cuenta</li>
+                      </ul>
+                    </section>
+					<section>
+                      <img src="img/ab-1-0.png" />
+                    </section>
+					<section>
+                      <img src="img/ab-2-0.png" />
+                    </section>
+					<section>
+                      <img src="img/ab-3-0.png" />
+                    </section>
+					<section>
+                      <img src="img/ab-4-0.png" />
+                    </section>
+					<section>
+                      <img src="img/ab-5-0.png" />
+                    </section>
+					<section>
+                      <h3>Como usarlo en 2048</h3>
+                      <ul>
+                        <li class="fragment">Movimientos del rival</li>
+                        <li class="fragment">Función de evaluación</li>
+                      </ul>
+                    </section>
 				</section>
 
 				<section data-state="header-64 header-visible">
+                  <section>
+                    <h2>Qué puedo usar?</h2>
+                    <span class="fragment">(para currar menos)</span>
+                  </section>
+                  <section>
+                    <h3>El rival</h3>
+                    <ul>
+                      <li class="fragment"><a href="https://metacpan.org/pod/Games::2048">Games::2048</a>, de <a href="https://metacpan.org/author/BLAIZER">Blaise Roth</a> </li>
+                      <li class="fragment through-after">Solo funciona con el teclado</li>
+                      <li class="fragment">Se puede interceptar el input <span class="fragment">(<b>En 20 horas!!</b>)</span></li>
+                      <li class="fragment">Solo extender una clase</li>
+                    </ul>
+                  </section>
+                  <section>
+                    <h3>Minimax</h3>
+                    <ul>
+                      <li class="fragment"><a href="https://metacpan.org/pod/Games::AlphaBeta">Games::AlphaBeta</a>, de <a href="https://metacpan.org/author/STIG">Stig Brautaset</a> </li>
+                      <li class="fragment">Implementa minimax con alpha-beta pruning</li>
+                      <li class="fragment">Extender <a href="https://metacpan.org/pod/Games::AlphaBeta::Position">Games::AlphaBeta::Position</a></li>
+                      <li class="fragment">Implementar <span class="code">findmoves</span>,
+                        <span class="code">apply</span> y <span class="code">evaluate</span>
+                      </li>
+                    </ul>
+                  </section>
 				</section>
 
 				<section data-state="header-128 header-visible">
+                  <section>
+                    <h3>
+                      <ul>
+                        <li>Decisión (AlphaBeta::Position)</li>
+                        <li>Pegamento (AlphaBeta)</li>
+                      </ul>
+                    </h3>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                    <p>Código completo en:</p>
+                    <p><a href="https://github.com/meis/Games-2048-AI-AlphaBeta">https://github.com/meis/Games-2048-AI-AlphaBeta</a></p>
+                  </section>
+                  <section>
+                    <h3>AlphaBeta::Position</h3>
 					<pre><code data-trim contenteditable>
-function linkify( selector ) {
-  if( supports3DTransforms ) {
+package Games::2048::AI::AlphaBeta::Position;
+use v5.12;
+use base qw(Games::AlphaBeta::Position);
+                    </code></pre>
+                    <ul>
+                      <li class="code">findmoves</li>
+                      <li class="code">apply</li>
+                      <li class="code">evaluate</li>
+                    </ul>
+                  </section>
+				  <section>
+                    <h3>findmoves</h3>
+					<pre><code data-trim contenteditable>
+sub findmoves {
+    my $self = shift;
+    my @moves;
 
-    var nodes = document.querySelectorAll( selector );
-
-    for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
-      var node = nodes[i];
-
-      if( !node.className ) {
-        node.className += ' roll';
-      }
+    if ( $self->player ) {
+        for (0..3) {
+            my $g = dclone $self->game;
+            my $move = $vecs[$_];
+            push (@moves, $move) if ($g->move_tiles($move));
+        }
     }
-  }
+    else {
+        @moves = map { ([$_->[0], $_->[1], 2], [$_->[0], $_->[1], 4]) } 
+                 $self->game->available_cells;
+    }
+    @moves;
 }
 					</code></pre>
-				</section>
+                  </section>
+				  <section>
+                    <h3>apply</h3>
+					<pre><code data-trim contenteditable>
+sub apply {
+    my ($self, $m) = @_;
+
+    my $g = dclone $self->game;
+    if ( $self->player) {
+        $g->move_tiles([$m->[0], $m->[1]]);
+    }
+    else {
+        $g->insert_tile([$m->[0], $m->[1]],$m->[2]);
+    }
+    $self->game($g);
+
+    $self->switch_player;
+
+    $self;
+}
+					</code></pre>
+                  </section>
+				  <section>
+                    <h3>evaluate</h3>
+                    <ul>
+                      <li>El número mas alto</li>
+                      <li class="fragment">El número mas alto en una esquina</li>
+                      <li class="fragment">Las filas/columas crecen</li>
+                      <li class="fragment">Número de celdas vacías</li>
+                      <li class="fragment">Smoothness (via <a href="https://github.com/ov3y/2048-AI">ov3y</a>)</li>
+                    </ul>
+                  </section>
+				  <section>
+                    <h3>evaluate</h3>
+					<pre><code data-trim contenteditable>
+sub evaluate {
+    my $self = shift;
+
+    my $free = $self->game->available_cells;
+    my $max  = $self->_max_value;
+
+    my $s = 0
+        + 3       * $max
+        + 2       * $self->_in_corner($max)
+        + 0.00001 * $self->_growth
+        + 3       * ($free ? log($free) : 0 )
+        + 0.3     * $self->_smoothness;
+
+    return $self->player? $s: -$s;
+}
+					</code></pre>
+                  </section>
+                  <section>
+                    <h3>AlphaBeta</h3>
+					<pre><code data-trim contenteditable>
+package Games::2048::AI::AlphaBeta;
+use Games::AlphaBeta;
+use Games::2048::AI::AlphaBeta::Position;
+extends 'Games::2048::Game::Input';
+
+sub handle_input {
+    my ($self, $app) = @_;
+
+    my $p = Games::AlphaBeta->new(
+        Games::2048::AI::AlphaBeta::Position->new($self)
+    );
+
+    $p->ply(4);
+    $p->abmove;
+    my $m = $p->peek_move;
+    $self->move([$m->[0], $m->[1]]);
+}
+					</code></pre>
+				  </section>
+                </section>
 
 				<section data-state="header-256 header-visible">
+                  <section>
+                     <h2>FUNCIONA???</h2>
+                  </section>
+                  <section>
+                     <h2>Sí!</h2>
+                     <img src="img/win.png" />
+                     <p class="fragment">(Mi récord actual son 58.7k)</p>
+                  </section>
+                  <section>
+                     <h2>A veces...</h2>
+                     <img src="img/loose.png" />
+                  </section>
+				  <section>
+                    <h3>Estudio de victorias según profundidad</h3>
+                    <p>(máxima precisión y rigurosidad)</p>
+                    <p>&nbsp;</p>
+                    <ul>
+                      <li class="fragment"><b>1 nivel</b>: pierde muy rápido (partidas de < 1m)</li>
+                      <li class="fragment"><b>2 niveles</b>: pierde menos rápido (pero se acerca)</li>
+                      <li class="fragment"><b>3 niveles</b>: puede ganar en media horita</li>
+                      <li class="fragment"><b>4 niveles</b>: a veces gana después de un par de horas</li>
+                      <li class="fragment"><b>5 niveles</b>: Life's too short</li>
+                    </ul>
+                  </section>
 				</section>
 
 				<section data-state="header-512 header-visible">
+                  <h3>Rendimiento</h3>
+                  <ul>
+                    <li class="fragment">Usar estructuras nuevas</li>
+                    <li class="fragment">Reimplementar los métodos del tablero</li>
+                    <li class="fragment">Conservar el árbol de juego entre iteraciones</li>
+                    <li class="fragment">Tratar el caso en que aparece un 4</li>
+                    <li class="fragment">Mirarselo un poco en general</li>
+                  </ul>
 				</section>
 
 				<section data-state="header-1024 header-visible">
+					<section>
+                      <h3>Sobre el código</h3>
+                      <ul>
+                        <li class="fragment">Not production-ready</li>
+                        <li class="fragment">La función de evaluación es dificil</li>
+                        <li class="fragment">Muy lento para ensayo-error</li>
+                        <li class="fragment">Muy lento para evaluar cambios de peso</li>
+                        <li class="fragment">Condiciones dependientes de la profundidad</li>
+                        <li class="fragment">Quemaré mi portátil</li>
+                      </ul>
+                    </section>
+					<section>
+                      <h3>En general</h3>
+                      <ul>
+                        <li class="fragment">Prototipo: CPAN + Pegamento</li>
+                        <li class="fragment">Alguien ha hecho algo parecido</li>
+                        <li class="fragment">Rendimiento vs Abstracción de la complejidad</li>
+                        <li class="fragment"><b>Tener la charla antes de enviarla</b></li>
+                      </ul>
+                    </section>
 				</section>
 
 				<section data-state="header-2048 header-visible">
+                  <h3>Preguntas</h3>
+                  <div class="fragment">
+                    <ul class="do">
+                      <li>Dudas</li>
+                      <li>Comentarios</li>
+                      <li>Balbuceo o divago</li>
+                    </ul>
+                    <ul class="do">
+                      <li>Está todo mal</li>
+                      <li>Ya hay un módulo que hace eso</li>
+                      <li>Dejarme en ridículo en general</li>
+                    </ul>
+                  </div>
 				</section>
 
 			</div>
