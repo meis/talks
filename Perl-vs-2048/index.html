@@ -43,7 +43,7 @@
               <div class="header-wrapper">
                 <span class="tile tile-2">   <span class="tile-text">Sobre mi</span></span>
                 <span class="tile tile-4">   <span class="tile-text">La charla</span></span>
-                <span class="tile tile-8">   <span class="tile-text">El juego</span></span>
+                <span class="tile tile-8">   <span class="tile-text">2048</span></span>
                 <span class="tile tile-16">  <span class="tile-text">El plan</span></span>
                 <span class="tile tile-32">  <span class="tile-text">Minimax</span></span>
                 <span class="tile tile-64">  <span class="tile-text">Las piezas</span></span>
@@ -67,7 +67,7 @@
                     <ul>
                       <li>Marc Egea i Sala (<a href="https://github.com/meis">github.com/meis</a>)</li>
                       <li class="fragment"><a href="http://barcelona.pm.org/">Barcelona.pm</a></li>
-                      <li class="fragment"><a href="https://soysuper.com">Soysuper</a> <span class="fragment">(oficinas en Europa y en Latinoamerica)</span></li>
+                      <li class="fragment"><a href="https://soysuper.com">Soysuper.com</a> <span class="fragment">(oficinas en Europa y en Latinoamerica)</span></li>
                       <li class="fragment">Profesional de Perl</li>
                       <li class="fragment">No tengo ni idea de lo que hablo</li>
                       <li class="fragment">Estoy nervioso</li>
@@ -88,9 +88,9 @@
                       <ul>
                         <li class>Una charla distinta<span class="fragment">: código que juegue (y gane) al 2048</span></li>
                         <li class="fragment through-after">Conclusiones de un proyecto pensado durante mucho tiempo y exhaustivamente testeado</li>
-                        <li class="fragment">Primero envíe la propuesta y luego ya a ver qué <span class="fragment">(<b>idiota</b>)</span></li>
+                        <li class="fragment">Primero envié la propuesta y luego ya a ver qué <span class="fragment">(<b>idiota</b>)</span></li>
                         <li class="fragment">Llevaba un tiempo pensando en el tema
-                            <span class="fragment">("<a href="http://youtube.com/watch?v=f84n5oFoZBc">Hammock-DD</a>"ish by Rich Hickey)</span>
+                            <span class="fragment">("<a href="http://youtube.com/watch?v=f84n5oFoZBc">Hammock-DD</a>"ish de Rich Hickey)</span>
                         </li>
                         <li class="fragment">Empecé a programar el martes <span class="fragment">(¿lo logré?)</span></span></li>
                       </ul>
@@ -113,7 +113,7 @@
 				<section data-state="header-8 header-visible">
                   <img src="img/2048.jpg" class="crude"/>
                   <ul>
-                    <li>by <a href="http://gabrielecirulli.com/">Gabriele Cirulli</a>
+                    <li>de <a href="http://gabrielecirulli.com/">Gabriele Cirulli</a>
                       > <a href="https://itunes.apple.com/us/app/1024!/id823499224">1024</a>
                       > <a href="http://asherv.com/threes/">Threes</a>
                     </li>
@@ -165,8 +165,6 @@
                       <ul>
                         <li class="fragment">Reduce el número de nodos evaluados</li>
                         <li class="fragment">Minimax es una búsqueda en profundidad</li>
-                        <li class="fragment">&alpha; és la mejor opción hasta el momento</li>
-                        <li class="fragment">&beta; és la peor opción hasta el momento</li>
                         <li class="fragment">Ignora los nodos que nunca se tendrán en cuenta</li>
                       </ul>
                     </section>
@@ -189,6 +187,7 @@
                       <h3>Como usarlo en 2048</h3>
                       <ul>
                         <li class="fragment">Movimientos del rival</li>
+                        <li class="fragment">Profundidad</li>
                         <li class="fragment">Función de evaluación</li>
                       </ul>
                     </section>
@@ -297,7 +296,7 @@ sub apply {
                       <li class="fragment">El número mas alto en una esquina</li>
                       <li class="fragment">Las filas/columas crecen</li>
                       <li class="fragment">Número de celdas vacías</li>
-                      <li class="fragment">Smoothness (via <a href="https://github.com/ov3y/2048-AI">ov3y</a>)</li>
+                      <li class="fragment">Smoothness (vía <a href="https://github.com/ov3y/2048-AI">ov3y</a>)</li>
                     </ul>
                   </section>
 				  <section>
