@@ -124,5 +124,19 @@ subtest 'Move board' => sub {
     /;
     ok( join('',$game->move_board($left,@input)) eq join('',@expected), 'Move up' );
 };
+subtest 'Shift row' => sub {
+    my @b1 = qw/0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0/;
+    my @b2 = qw/0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 0/;
+    my @b3 = qw/0 0 0 1 2 0 3 0 0 0 0 0 0 0 0 0/;
+    my @b4 = qw/1 2 3 4 5 6 7 8 1 2 3 4 5 6 7 8/;
+    my @b5 = qw/0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0/;
+
+    ok( $game->same_board(@b1, @b1), 'Same board');
+    ok( $game->same_board(@b1, @b5), 'Same board');
+    ok( !$game->same_board(@b1, @b2), 'Not Same board');
+    ok( !$game->same_board(@b2, @b1), 'Not Same board');
+    ok( !$game->same_board(@b2, @b4), 'Not Same board');
+    ok( !$game->same_board(@b3, @b2), 'Not Same board');
+};
 
 done_testing()
