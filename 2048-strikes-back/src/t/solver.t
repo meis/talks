@@ -2,11 +2,10 @@ use Test::More;
 use Data::Dumper;
 use v5.10;
 
-say shift;
+my $class = $ENV{'CLASS'} || 'Solver';
 
-BEGIN { use_ok( 'Solver' ); }
-require_ok( 'Solver' );
-ok ( my $game = Solver->new, "new object" );
+require_ok( $class );
+ok ( my $game = $class->new, "Instance Solver" );
 
 my ($left,$right,$up,$down) = (0,1,2,3);
 

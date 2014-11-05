@@ -1,8 +1,11 @@
 package Input;
 use 5.012;
 use Moo;
-use Solver;
+use Module::Load;
 extends 'Games::2048::Game::Input';
+
+my $class = $ENV{'CLASS'} || 'Solver';
+load $class;
 
 my %vecs = ( left => [-1, 0], right => [1, 0], up => [0, -1], down => [0, 1] );
 
@@ -10,7 +13,7 @@ has moves => is => 'rw', default => 0;
 has time  => is => 'rw';
 
 my $move_score = 0;
-my $solver = Solver->new;
+my $solver = $class->new;
 
 sub handle_input {
 	my ($self, $app) = @_;
