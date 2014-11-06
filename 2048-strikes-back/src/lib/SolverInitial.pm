@@ -78,7 +78,7 @@ sub random_player_move {
     my @moves = shuffle(0, 1, 2, 3);
     my @new_board = @board;
 
-    while ( $self->same_board(@new_board, @board) ) {
+    while ( $self->same_board(@new_board, @board) && @moves) {
         @new_board = $self->move_board(pop @moves,@board);
     }
 
