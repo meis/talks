@@ -1,95 +1,120 @@
 package Solver;
 use v5.12;
+use Moose;
 use strict;
-use Data::Dumper;
-use Memoize;
-use List::Util qw(shuffle);
-#memoize('shift_row');
-#memoize('move_board');
+use Parallel::ForkManager;
 
-my $t = [
-    #left  => 
+my $rotation = [
+    #left
     [ 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 ],
-    #right => 
+    #right
     [ 3,2,1,0,7,6,5,4,11,10,9,8,15,14,13,12 ],
-    #up    => 
+    #up
     [ 0,4,8,12,1,5,9,13,2,6,10,14,3,7,11,15 ],
-    #down  => 
+    #down
     [ 12,8,4,0,13,9,5,1,14,10,6,2,15,11,7,3 ],
 ];
+
+my $_moves = 2000;
+
+sub moves {
+    $_moves = $_[1];
+}
 
 sub new {
     return bless {}, shift;
 }
+
 sub best_move {
-    my ($self, @board, $moves ) = @_;
+    my ($self, @board) = @_;
 
-    $moves ||= 100;
-    my %scores = {};
+    my %scores = ();
 
-    for my $direction (0,1,2,3) {
-        my @moved_board = $self->move_board($direction, @board);
+    my $pm = Parallel::ForkManager->new(8);
 
-        if ( grep { $moved_board[$_] != $board[$_] } 0..@board-1 ) {
-            for (1..$moves) {
-                $scores{$direction} += $self->play_random_game(@moved_board);
+    $pm->run_on_finish (
+        sub {
+            my ($pid, $exit_code, $ident, $exit_signal, $core_dump, $data_structure_reference) = @_;
+
+            if (defined($data_structure_reference)) {
+              $scores{${$data_structure_reference}->[0]} += ${$data_structure_reference}->[1];
+            }
+        }
+    );
+
+    for (1..2) {
+        for my $direction (0,1,2,3) {
+            my @moved_board = $self->move_board($direction, @board);
+
+            if ( grep { $board[$_] != $moved_board[$_] } 0..15 ) {
+                $pm->start and next;
+
+                srand(time + $direction);
+                my $score;
+
+                for (1..($_moves/2)) {
+                    $score += $self->play_random_game(@moved_board);
+                }
+
+                $pm->finish(0, \[$direction, $score]);
             }
         }
     }
 
+    $pm->wait_all_children;
     my $dir = (sort {$scores{$b} <=> $scores{$a}} keys %scores)[0];
-    return [-1,0] if $dir == 0;
-    return [1,0] if $dir == 1;
-    return [0,-1] if $dir == 2;
-    return [0,1] if $dir == 3;
+
+    return [-1, 0] if $dir == 0;
+    return [ 1, 0] if $dir == 1;
+    return [ 0,-1] if $dir == 2;
+    return [ 0, 1];
 }
 
 sub play_random_game {
     my ( $self, @board ) = @_;
 
     my $score = 0;
-
     my $free = 1;
+    my @free_cells;
+
     while ( $free ) {
-        ($free,@board) = $self->add_random_tile(@board);
+        @free_cells = grep { !$board[$_] } 0..@board -1;
+        # 90% of values are "2", 10% are "4"
+        #my @new_board = @board;
+        $board[@free_cells[rand @free_cells]] = int(1.1 + rand(1));
 
-        next unless $free;
+        next unless $free =  @free_cells -1;
 
-        @board = $self->random_player_move(@board);
+        my @new_board = @board;
+
+        LOOP: while ( 1 ) {
+            @new_board = $self->move_board( int(rand(4)), @board);
+
+            for my $i (0..15) {
+                last LOOP if $new_board[$i] != $board[$i];
+            }
+        }
+
+        @board =  @new_board;
         $score++;
     }
 
     return $score;
 }
 
-sub add_random_tile {
-    my ( $self, @board ) = @_;
-    my @free_cells = grep { !$board[$_] } 0..@board -1;
-    # 90% of values are "2", 10% are "4"
-    #my @new_board = @board;
-    $board[@free_cells[rand @free_cells]] = int(1.1 + rand(1));
+sub move_board {
+    my ( $self, $direction, @board ) = @_;
 
-    return ( @free_cells -1, @board );
-}
+    my ($p0,$p1,$p2,$p3);
+    my $idx = 0;
 
-sub random_player_move {
-    my ( $self, @board ) = @_;
+    for (0..3) {
+        $p0 = $rotation->[$direction][$idx++];
+        $p1 = $rotation->[$direction][$idx++];
+        $p2 = $rotation->[$direction][$idx++];
+        $p3 = $rotation->[$direction][$idx++];
 
-    my ( $score, $free );
-    my @moves = shuffle(0, 1, 2);
-    push @moves, 3;
-    my @new_board = @board;
-
-    while ( !grep { $new_board[$_] != $board[$_] } 0..@board-1 ) {
-        @new_board = $self->move_board(pop @moves,@board);
-    }
-
-    return @new_board;
-}
-
-sub shift_row {
-    shift;
-        my @tiles = grep {$_} @_;
+        my @tiles = grep {$_} ($board[$p0], $board[$p1], $board[$p2], $board[$p3] );
 
         if ( $tiles[0] && $tiles[1] && $tiles[0] == $tiles[1] ) {
             $tiles[0]++;
@@ -107,40 +132,14 @@ sub shift_row {
         }
         @tiles = grep {$_} @tiles;
 
-        $tiles[0] = 0 unless $tiles[0];
-        $tiles[1] = 0 unless $tiles[1];
-        $tiles[2] = 0 unless $tiles[2];
-        $tiles[3] = 0 unless $tiles[3];
-
-        return @tiles;
-}
-sub move_board {
-    my ( $self, $direction, @board ) = @_;
-
-    my @new_board;
-    my ($p0,$p1,$p2,$p3);
-
-    my $idx = 0;
-    for (0..3) {
-        $p0 = $t->[$direction][$idx++];
-        $p1 = $t->[$direction][$idx++];
-        $p2 = $t->[$direction][$idx++];
-        $p3 = $t->[$direction][$idx++];
-
-        ($new_board[$p0], $new_board[$p1], $new_board[$p2], $new_board[$p3] ) = $self->shift_row($board[$p0], $board[$p1], $board[$p2], $board[$p3] );
+        $board[$p0] = $tiles[0] || 0;
+        $board[$p1] = $tiles[1] || 0;
+        $board[$p2] = $tiles[2] || 0;
+        $board[$p3] = $tiles[3] || 0;
 
     }
 
-    return @new_board;
-}
-
-sub print_board {
-    my $self = shift;
-
-    say join("-", @_[0..3]);
-    say join("-", @_[4..7]);
-    say join("-", @_[8..11]);
-    say join("-", @_[12..15]);
+    return @board;
 }
 
 1;
