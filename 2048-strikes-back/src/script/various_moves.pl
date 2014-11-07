@@ -12,7 +12,7 @@ my $class = $ENV{'CLASS'} || 'Solver';
 load $class;
 my $g = $class->new();
 
-$g->moves(1000);
+$g->moves(2000);
 
 $g->best_move(
     0, 0, 0, 0,
