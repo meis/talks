@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>2048 Strikes Back!</title>
+
+		<meta name="description" content="Attempt to beat 2048 game in Perl">
+		<meta name="author" content="Marc Egea i Sala">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <style>
+      body { background: #4d7e65 }
+    </style>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>2048 strikes back</h1>
+				</section>
+
+				<section>
+					<h1>WHOAMI</h1>
+				</section>
+
+				<section>
+					<h1>Talk rules</h1>
+				</section>
+
+				<section>
+					<h1>2048 INTRO</h1>
+				</section>
+
+				<section>
+					<h1>Last episode</h1>
+				</section>
+
+				<section>
+					<h1>El plan</h1>
+					<h1>no perdre</h1>
+					<h1>no conèixer el joc (path of void)</h1>
+					<h1>aleatòri</h1>
+				</section>
+
+				<section>
+					<h1>Pseudocodi plan</h1>
+          explicar shift_row
+				</section>
+
+				<section>
+					<h1>Implementació OK</h1>
+				</section>
+
+				<section>
+					<h1>GIF leeent</h1>
+				</section>
+
+				<section>
+					<h1>FAIL</h1>
+				</section>
+
+				<section>
+					<h1>Requeriments? x jugades en y temps</h1>
+				</section>
+
+				<section>
+					<h1>Profiling (wikipedia)</h1>
+					<blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
+						&ldquo;For years there has been a theory that millions of monkeys typing at random on millions of typewriters would
+						reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.&rdquo;
+					</blockquote>
+				</section>
+
+				<section>
+					<h1>NYTProf</h1>
+				</section>
+
+				<section>
+					<h1>Execució NYTProf</h1>
+				</section>
+
+				<section>
+					<h1>NYTProf shift_row (s'executa més vegades)</h1>
+				</section>
+
+				<section>
+					<h1>Canvi a shift_row</h1>
+				</section>
+
+				<section>
+					<h1>Provar de jugar</h1>
+				</section>
+
+				<section>
+					<h1>FAIL</h1>
+				</section>
+
+				<section>
+					<h1>Tests!</h1>
+				</section>
+
+				<section>
+					<h1>Tests shift_row</h1>
+				</section>
+
+				<section>
+					<h1>Prova d'execució</h1>
+				</section>
+
+				<section>
+					<h1>FAIL (no sé quan més ràpid és)</h1>
+				</section>
+
+				<section>
+					<h1>Benchmarks (wikipedia)</h1>
+				</section>
+
+				<section>
+					<h1>(micro) Benchmarking is hard</h1>
+				</section>
+
+				<section>
+					<h1>Benchmark module</h1>
+				</section>
+
+				<section>
+					<h1>Benchmark de shift_row</h1>
+				</section>
+
+				<section>
+					<h1>Benchmark de Solvers</h1>
+				</section>
+
+				<section>
+					<h1>Win!</h1>
+				</section>
+
+				<section>
+					<h1>NYTProf mode_board</h1>
+				</section>
+
+				<section>
+					<h1>codi nou move_board</h1>
+        </section>
+
+				<section>
+					<h1>Benchmark solvers</h1>
+        </section>
+
+				<section>
+					<h1>Crida l'atenció el moose</h1>
+        </section>
+
+				<section>
+					<h1>Explicar Moose accessors</h1>
+        </section>
+
+				<section>
+					<h1>Treure moose</h1>
+        </section>
+
+				<section>
+					<h1>Benchmark sense moose</h1>
+        </section>
+
+				<section>
+					<h1>Les crides son cares!</h1>
+        </section>
+
+				<section>
+          <h1>Memoize</h1>
+        </section>
+
+				<section>
+					<h1>Codi memoize</h1>
+        </section>
+
+				<section>
+					<h1>Benchmark memoize</h1>
+        </section>
+
+				<section>
+					<h1>FAIL</h1>
+        </section>
+
+				<section>
+					<h1>Les crides son cares! (&return)</h1>
+        </section>
+
+				<section>
+					<h1>Prova sense mètodes</h1>
+        </section>
+
+				<section>
+					<h1>Benchmark sense mètodes</h1>
+        </section>
+
+				<section>
+					<h1>WIN</h1>
+        </section>
+
+				<section data-background="#8c4738">
+					<h1>Wilcard</h1>
+				</section>
+
+				<section>
+					<h1>Parallelization</h1>
+        </section>
+
+				<section>
+					<h1>module Fork</h1>
+        </section>
+
+				<section>
+					<h1>show code</h1>
+          explicar pq forks > 4
+        </section>
+
+				<section>
+					<h1>Benchmark parallel</h1>
+        </section>
+
+				<section>
+          <h1>????</h1>
+        </section>
+
+				<section>
+					<h1>Benchmarking is hard!</h1>
+        </section>
+
+				<section>
+					<h1>time</h1>
+        </section>
+
+				<section>
+					<h1>Win!</h1>
+        </section>
+
+				<section>
+					<h1>Més coses?</h1>
+        </section>
+
+				<section>
+					<h1>Benchmark same_board</h1>
+        </section>
+
+				<section>
+					<h1>Recapitulem</h1>
+          Ajuntar mètodes
+          No fer servir accessors de moose
+          Evitar creació d'arrays
+          (tot per reduir crides)
+          Paralelitzar
+        </section>
+
+				<section>
+					<h1>All together?</h1>
+        </section>
+
+				<section>
+					<h1>Benchmark all_together</h1>
+        </section>
+
+				<section>
+					<h1>Try it</h1>
+        </section>
+
+				<section>
+					<h1>GIF</h1>
+        </section>
+
+				<section>
+					<h1>Com de bo és?</h1>
+        </section>
+
+				<section>
+					<h1>Stats</h1>
+        </section>
+
+				<section>
+					<h1>Win!</h1>
+        </section>
+
+				<section>
+					<h1>Altres coses que podría haver fet</h1>
+        </section>
+
+				<section>
+					<h1>Conclusions</h1>
+          have code (from 0 to 100)
+          profile
+          test (must go first)
+          benchmark
+        </section>
+
+
+				<section data-background="#8c4738">
+					<h1>THANKS!</h1>
+				</section>
+
+				<section>
+					<h1>Questions?</h1>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
