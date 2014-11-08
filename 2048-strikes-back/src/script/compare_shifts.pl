@@ -6,8 +6,6 @@ use List::Util qw/shuffle/;
 use Benchmark qw(:all) ;
 use Test::More;
 
-# TODO: Try Dumbbench
-
 my %methods = (
     modified => sub {
         # Not null tiles, this moves all left

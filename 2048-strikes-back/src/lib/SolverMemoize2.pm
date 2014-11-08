@@ -1,11 +1,12 @@
 # Using Memoize module.
-package SolverMemoize;
+package SolverMemoize2;
 use v5.12;
 use Moose;
 use strict;
 use List::Util qw(shuffle);
 use Memoize;
 
+memoize 'move_board';
 memoize 'shift_row';
 
 has 'moves'    => ( is => 'rw', default => 2000 );
