@@ -246,7 +246,8 @@ nytprofcsv
 				</section>
 
 				<section>
-					<h1>NYTProf shift_row (s'executa més vegades)</h1>
+					<h1>NYTProf shift_row</h1>
+          <img src="img/ShiftRow_profiling.png">
 				</section>
 
 				<section>
@@ -349,11 +350,12 @@ SolverFasterShift   9.68               32%                --
 				</section>
 
 				<section>
-					<h1>NYTProf mode_board</h1>
+					<h1>NYTProf</h1>
+          <img src="img/move_board_profiling.png">
 				</section>
 
 				<section>
-					<h1>Original move_board</h1>
+					<h1>move_board</h1>
 					<pre><code data-trim contenteditable class="perl">
 sub move_board {
     my ( $self, $direction, @board ) = @_;
@@ -379,7 +381,7 @@ sub move_board {
           </code></pre>
         </section>
 				<section>
-					<h1>Modified move_board</h1>
+					<h1>Modified</h1>
 					<pre><code data-trim contenteditable class="perl">
 sub move_board {
     my ( $self, $direction, @board ) = @_;
@@ -499,7 +501,10 @@ has 'rotation' => (
 $self->rotation->[$direction][$idx++]
             </code></pre>
           </div>
-          <div class="fragment">
+        </section>
+        <section>
+					<h1>Moose accessors</h1>
+          <div>
             <small>To: </small>
    					<pre><code data-trim contenteditable class="perl">
 my $rotation = [
@@ -667,7 +672,7 @@ SolverInitial         12.8                 54%                  --
         </section>
 
 				<section>
-					<h1>Do your best to Benchmark it</h1>
+					<h2>(try to) Benchmark it</h2>
 
           <div class="fragment">
             <p>4 cores:</p>
@@ -778,6 +783,7 @@ marc@z1:~/work/talks/2048-strikes-back/src$
           <ul>
             <li class="fragment">Custom Memoize</li>
             <li class="fragment">GOTO</li>
+            <li class="fragment">Inline C / SWIG</li>
             <li class="fragment">More Perl Black Magic</li>
             <li class="fragment">Perl6?</li>
           </ul>
@@ -818,9 +824,9 @@ marc@z1:~/work/talks/2048-strikes-back/src$
 				</section>
 
         <section>
-					<h1>Questions?</h1>
-          <img src="2048-final.gif">
-				</section>
+          <h1>Questions?</h1>
+          <img src="img/2048-final.gif">
+		</section>
 
 			</div>
 
