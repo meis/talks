@@ -15,13 +15,30 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 		<link rel="stylesheet" href="css/reveal.min.css">
-		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+		<link rel="stylesheet" href="css/theme/night.css" id="theme">
 
 		<!-- For syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
 
     <style>
-      body { background: #4d7e65 }
+      .reveal section ul li {
+        list-style: none;
+        margin-right: 1em;
+      }
+      .reveal section ul li:before {
+        content: "· ";
+        margin-left: -1.5em; margin-right: .100em;
+      }
+
+      .reveal section ul.do li:before {
+        content: ' ✔';
+        color: green;
+      }
+
+      .reveal section ul.dont li:before {
+        content: ' ✗';
+        color: red;
+      }
     </style>
 
 		<!--[if lt IE 9]>
@@ -37,66 +54,195 @@
 			<div class="slides">
 				<section>
 					<h1>2048 strikes back</h1>
+          <p>Sildes and code available in github:</p>
+          <p><a href="https://github.com/meis/talks/tree/master/2048-strikes-back">https://github.com/meis/talks/tree/master/2048-strikes-back</a></p>
 				</section>
 
 				<section>
 					<h1>WHOAMI</h1>
+          <ul>
+            <li>Marc Egea i Sala (<a href="https://github.com/meis">github.com/meis</a>)</li>
+            <li class="fragment"><a href="http://barcelona.pm.org/">Barcelona.pm</a></li>
+            <li class="fragment"><a href="https://soysuper.com">Soysuper.com</a></li>
+          </ul>
 				</section>
 
 				<section>
 					<h1>Talk rules</h1>
+          <ul class="fragment do">
+            <li>Doubts</li>
+            <li>Funny comments</li>
+            <li>I'm talking to fast</li>
+          </ul>
+          <ul class="fragment dont">
+            <li>It's all wrong! you're so stupid</li>
+            <li>There's another module to do it</li>
+            <li>Fool me in general</li>
+          </ul>
 				</section>
 
 				<section>
-					<h1>2048 INTRO</h1>
+					<h1>2048: The game</h1>
+          <small>
+            from <a href="http://gabrielecirulli.com/">Gabriele Cirulli</a>
+              > <a href="https://itunes.apple.com/us/app/1024!/id823499224">1024</a>
+              > <a href="http://asherv.com/threes/">Threes</a>
+          </small>
+          <div class="">
+          <img src="img/2048.jpg"/>
+        </div>
+				</section>
+
+				<section>
+          <div>
+            <img src="img/2048-howto-1.png">
+            <img src="img/2048-howto-2.png">
+            <img src="img/2048-howto-3.png">
+            <img src="img/2048-howto-4.png">
+          </div>
+          <div>
+            <img src="img/2048-howto-5.png">
+            <img src="img/2048-howto-6.png">
+            <img src="img/2048-howto-7.png">
+            <img src="img/2048-howto-8.png">
+          </div>
+          <small>
+            Thanks to <a href="http://www.desdefirefoxos.net/2048-para-firefoxos/">Desde FirefoxOS</a>
+          </small>
 				</section>
 
 				<section>
 					<h1>Last episode</h1>
+          <small>A dumb way to implement it</small><div></div>
+
+          <ul>
+            <li class="fragment">Talk in <a href="http://workshop.granada.pm/granada2014/">Granada Perl Workshop 2014</a></li>
+            <li class="fragment">Beat the game using as much CPAN as possible</li>
+            <li class="fragment">Engine for the Games::2048 Module</li>
+            <li class="fragment">Using minimax</li>
+            <li class="fragment">Evaluate the state of a board</li>
+          </ul>
 				</section>
 
 				<section>
-					<h1>El plan</h1>
-					<h1>no perdre</h1>
-					<h1>no conèixer el joc (path of void)</h1>
-					<h1>aleatòri</h1>
+					<h1>The plan</h1>
+          <small>Dumbest wat to implement it?</small><div></div>
+
+          <ul>
+            <li class="fragment">Survive is not the best strategy, but's good one</li>
+            <li class="fragment">I tried the path of Enlighntment</li>
+            <li class="fragment">Let's try the path of void</li>
+          </ul>
+				</section>
+
+        <section>
+          <h1>Randomness!</h1>
+          <small class="fragment">2000 plays per direction</small>
+        </section>
+
+				<section>
+					<h1>Algorithm</h1>
+					<pre><code data-trim contenteditable>
+best_move (@board):
+
+  $scores;
+
+  for $dir (qw/left right up down/) {
+    for (0..2000) {
+      while (not_lost) {
+         add_random_tile;
+         random_player_move;
+         $score{$dir}++;
+      }
+    }
+  }
+
+  get_best_score
+}
+          </code></pre>
+				</section>
+
+        <section>
+          <h1>Shift rows</h1>
+          <ul>
+            <li class="fragment">Move left = shift row (0..3)</li>
+            <li class="fragment">Move up = up row (0..3)</li>
+            <li class="fragment">...</li>
+            <li class="fragment">Move up = rotate + Move left + rotate</li>
+          </ul>
+        </section>
+
+				<section>
+          <h1>Got it!</h1>
+
+          <ul>
+            <li class="fragment">"Compiles"</li>
+            <li class="fragment">Run</li>
+            <li class="fragment">Survives for hours</li>
+            <li class="fragment">I'm done!</li>
+            <li class="fragment">Wait..<div class="fragment">does it win?</div></li>
+          </ul>
 				</section>
 
 				<section>
-					<h1>Pseudocodi plan</h1>
-          explicar shift_row
-				</section>
-
-				<section>
-					<h1>Implementació OK</h1>
-				</section>
-
-				<section>
-					<h1>GIF leeent</h1>
+          <img src="img/2048-initial.gif">
+          <h1 class="fragment">I don't know!</h1>
 				</section>
 
 				<section>
 					<h1>FAIL</h1>
 				</section>
 
-				<section>
-					<h1>Requeriments? x jugades en y temps</h1>
+				<section data-background="#8c4738">
+					<h1>The talk starts here</h1>
 				</section>
 
 				<section>
-					<h1>Profiling (wikipedia)</h1>
-					<blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						&ldquo;For years there has been a theory that millions of monkeys typing at random on millions of typewriters would
-						reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.&rdquo;
+					<h1>What do we want?</h1>
+          <ul>
+            <li class="fragment">Winning Algorithm (~80%)</li>
+            <li class="fragment">In human time</li>
+          </ul>
+				</section>
+
+				<section>
+					<h1>When do we want it?</h1>
+          <p class="fragment">
+            <b>NOW!!</b>
+          </p>
+          <p class="fragment">
+            Let's go!
+          </p>
+				</section>
+
+				<section>
+					<h1>Profiling</h1>
+          <small>Wikipedia</small>
+					<blockquote cite="http://en.wikipedia.org/wiki/Profiling_(computer_programming)">
+            In software engineering, profiling ("program profiling", "software profiling") is a form of dynamic program analysis
+            that measures, for example, the space (memory) or time complexity of a program, the usage of particular instructions,
+            or the frequency and duration of function calls. Most commonly, profiling information serves to aid program optimization.
 					</blockquote>
 				</section>
 
 				<section>
-					<h1>NYTProf</h1>
+					<h1>Devel::NYTProf</h1>
+					<pre><code data-trim contenteditable class="bash">
+# profile code and write database to ./nytprof.out
+perl -d:NYTProf some_perl.pl
+
+# convert database into a set of html files, e.g., ./nytprof/index.html
+# and open a web browser on the nytprof/index.html file
+nytprofhtml --open
+
+# or into comma separated files, e.g., ./nytprof/*.csv
+nytprofcsv
+          </code></pre>
 				</section>
 
 				<section>
-					<h1>Execució NYTProf</h1>
+					<h1>NYTProf in my code</h1>
+          <img src="img/SolverInitial_profiling.png">
 				</section>
 
 				<section>
@@ -104,15 +250,16 @@
 				</section>
 
 				<section>
-					<h1>Canvi a shift_row</h1>
+					<h1>Few changes in shift_row</h1>
 				</section>
 
 				<section>
-					<h1>Provar de jugar</h1>
+					<h1>Let's try!</h1>
 				</section>
 
 				<section>
-					<h1>FAIL</h1>
+          <img src="img/FAIL1.gif"></img>
+					<h1 class="fragment">FAIL</h1>
 				</section>
 
 				<section>
@@ -120,19 +267,42 @@
 				</section>
 
 				<section>
-					<h1>Tests shift_row</h1>
+					<h1>Shift_row tests</h1>
+					<pre><code data-trim contenteditable class="perl">
+use Test::More;
+
+subtest 'Shift row' => sub {
+    ok( join('', $game->shift_row(1,1,0,0)) eq '2000', '1100 -> 2000');
+    ok( join('', $game->shift_row(0,0,0,1)) eq '1000', '0001 -> 1000');
+    ok( join('', $game->shift_row(0,3,0,3)) eq '4000', '0303 -> 4000');
+    ok( join('', $game->shift_row(3,2,0,2)) eq '3300', '3202 -> 3300');
+    ok( join('', $game->shift_row(0,0,0,0)) eq '0000', '0000 -> 0000');
+    ok( join('', $game->shift_row(1,0,0,0)) eq '1000', '1000 -> 1000');
+    ok( join('', $game->shift_row(1,2,3,4)) eq '1234', '1234 -> 1234');
+    ok( join('', $game->shift_row(1,2,1,2)) eq '1212', '1212 -> 1212');
+    ok( join('', $game->shift_row(1,2,2,1)) eq '1310', '1221 -> 1310');
+};
+          </code></pre>
 				</section>
 
 				<section>
-					<h1>Prova d'execució</h1>
+					<h1>It works!</h1>
 				</section>
 
 				<section>
-					<h1>FAIL (no sé quan més ràpid és)</h1>
+          <h1>HOW MUCH BETTER??</h1>
+          <small class="fragment">Profiling doesn't help</small>
 				</section>
 
 				<section>
-					<h1>Benchmarks (wikipedia)</h1>
+					<h1>Benchmark</h1>
+          <small>Wikipedia</small>
+					<blockquote cite="http://en.wikipedia.org/wiki/Benchmark_(computing)">
+            In computing, a benchmark is the act of running a computer program, a set of programs, or other operations,
+            in order to assess the relative performance of an object, normally by running a number of standard tests and
+            trials against it. The term 'benchmark' is also mostly utilized for the purposes of elaborately-designed
+            benchmarking programs themselves.
+					</blockquote>
 				</section>
 
 				<section>
@@ -141,15 +311,38 @@
 
 				<section>
 					<h1>Benchmark module</h1>
+					<pre><code data-trim contenteditable class="bash">
+use Benchmark qw(:all) ;
+
+timethis ($count, "code");
+
+# Use Perl code in strings...
+timethese($count, {
+    'Name1' => '...code1...',
+    'Name2' => '...codede2...',
+});
+          </code></pre>
 				</section>
 
 				<section>
-					<h1>Benchmark de shift_row</h1>
+					<h1>Benchmark shift_row</h1>
+					<pre class="fragment"><code data-trim contenteditable class="bash">
+$ script/compare_shifts.pl
+             Rate original modified
+original  94339/s       --     -56%
+modified 212764/s     126%       --
+          </code></pre>
 				</section>
 
 				<section>
-					<h1>Benchmark de Solvers</h1>
-				</section>
+					<h1>Benchmark complete</h1>
+					<pre class="fragment"><code data-trim contenteditable class="bash">
+$ script/compare_solvers.pl SolverInitial SolverFasterShift
+                  s/iter     SolverInitial SolverFasterShift
+SolverInitial       12.7                --              -24%
+SolverFasterShift   9.68               32%                --
+          </code></pre>
+        </section>
 
 				<section>
 					<h1>Win!</h1>
@@ -160,59 +353,231 @@
 				</section>
 
 				<section>
-					<h1>codi nou move_board</h1>
+					<h1>Original move_board</h1>
+					<pre><code data-trim contenteditable class="perl">
+sub move_board {
+    my ( $self, $direction, @board ) = @_;
+
+    my @new;
+
+    my $idx = 0;
+    for (0..3) {
+        my @r = (
+            $self->rotation->[$direction][$idx++],
+            $self->rotation->[$direction][$idx++],
+            $self->rotation->[$direction][$idx++],
+            $self->rotation->[$direction][$idx++]
+        );
+
+        ( $new[$r[0]], $new[$r[1]], $new[$r[2]], $new[$r[3]] ) =
+        $self->shift_row($board[$r[0]], $board[$r[1]], $board[$r[2]], $board[$r[3]] );
+
+    }
+
+    return @new;
+}
+          </code></pre>
+        </section>
+				<section>
+					<h1>Modified move_board</h1>
+					<pre><code data-trim contenteditable class="perl">
+sub move_board {
+    my ( $self, $direction, @board ) = @_;
+
+    my @new;
+    my ($p0,$p1,$p2,$p3);
+
+    my $r = $self->rotation->[$direction];
+    my $idx = 0;
+    for (0..3) {
+        $p0 = $r->[$idx++];
+        $p1 = $r->[$idx++];
+        $p2 = $r->[$idx++];
+        $p3 = $r->[$idx++];
+
+        ($new[$p0], $new[$p1], $new[$p2], $new[$p3] ) =
+        $self->shift_row($board[$p0], $board[$p1], $board[$p2], $board[$p3] );
+
+    }
+
+    return @new;
+}
+          </code></pre>
         </section>
 
 				<section>
-					<h1>Benchmark solvers</h1>
+					<h1>Benchmark it</h1>
+					<pre class="fragment"><code data-trim contenteditable class="bash">
+$ script/compare_solvers.pl SolverInitial SolverFasterMoveBoard
+                      s/iter         SolverInitial SolverFasterMoveBoard
+SolverInitial           13.4                    --                  -11%
+SolverFasterMoveBoard   11.9                   13%                    --
+          </code></pre>
         </section>
 
 				<section>
-					<h1>Crida l'atenció el moose</h1>
+          <h1>Function called many times?</h1>
         </section>
 
 				<section>
-					<h1>Explicar Moose accessors</h1>
+          <h1>Memoize is calling</h1>
+          <img src="img/CALLING.gif">
         </section>
 
 				<section>
-					<h1>Treure moose</h1>
+					<h1>With Memoize</h1>
+					<pre><code data-trim contenteditable class="perl">
+package SolverMemoizeShiftRow;
+..
+use Memoize;
+memoize 'shift_row';
+          </code></pre>
+					<pre><code data-trim contenteditable class="perl">
+package SolverMemoizeMoveBoard;
+..
+use Memoize;
+memoize 'move_board';
+          </code></pre>
+					<pre><code data-trim contenteditable class="perl">
+package SolverMemoize2;
+..
+use Memoize;
+memoize 'move_board';
+memoize 'shift_row';
+          </code></pre>
         </section>
 
 				<section>
-					<h1>Benchmark sense moose</h1>
-        </section>
-
-				<section>
-					<h1>Les crides son cares!</h1>
-        </section>
-
-				<section>
-          <h1>Memoize</h1>
-        </section>
-
-				<section>
-					<h1>Codi memoize</h1>
-        </section>
-
-				<section>
-					<h1>Benchmark memoize</h1>
+					<h1>Benchmark it</h1>
+					<pre class="fragment"><code data-trim contenteditable class="bash">
+$ script/compare_solvers.pl SolverInitial SolverMemoizeMoveBoard SolverMemoizeShiftRow SolverMemoize2
+                       s/iter SolverMemoizeMoveBoard SolverMemoize2 SolverMemoizeShiftRow SolverInitial
+SolverMemoizeMoveBoard   19.8                     --           -12%                  -23%          -32%
+SolverMemoize2           17.4                    14%             --                  -12%          -22%
+SolverMemoizeShiftRow    15.4                    29%            13%                    --          -12%
+SolverInitial            13.5                    47%            29%                   14%            --
+          </code></pre>
         </section>
 
 				<section>
 					<h1>FAIL</h1>
+          <img src="img/FAIL4.gif">
+          <p class="fragment">Memoize is for expensive methods</p>
         </section>
 
 				<section>
-					<h1>Les crides son cares! (&return)</h1>
+					<h1>Sub calls are expensive</h1>
         </section>
 
 				<section>
-					<h1>Prova sense mètodes</h1>
+					<h1>Tiny methods</h1>
+          <div class="fragment">
+           <img src="img/hiding.gif">
+           <p>Where are you?</p>
+          </div>
         </section>
 
 				<section>
-					<h1>Benchmark sense mètodes</h1>
+					<h1>Moose accessors</h1>
+          <div class="fragment">
+            <small>From:</small>
+					  <pre><code data-trim contenteditable class="perl">
+has 'rotation' => (
+    is      => 'ro',
+    default => sub {[
+        #left
+        [ 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 ],
+        #right
+        [ 3,2,1,0,7,6,5,4,11,10,9,8,15,14,13,12 ],
+        #up
+        [ 0,4,8,12,1,5,9,13,2,6,10,14,3,7,11,15 ],
+        #down
+        [ 12,8,4,0,13,9,5,1,14,10,6,2,15,11,7,3 ],
+    ]},
+);
+...
+$self->rotation->[$direction][$idx++]
+            </code></pre>
+          </div>
+          <div class="fragment">
+            <small>To: </small>
+   					<pre><code data-trim contenteditable class="perl">
+my $rotation = [
+    #left
+    [ 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 ],
+    #right
+    [ 3,2,1,0,7,6,5,4,11,10,9,8,15,14,13,12 ],
+    #up
+    [ 0,4,8,12,1,5,9,13,2,6,10,14,3,7,11,15 ],
+    #down
+    [ 12,8,4,0,13,9,5,1,14,10,6,2,15,11,7,3 ],
+];
+...
+$rotation->[$direction][$idx++]
+            </code></pre>
+          </div>
+        </section>
+
+				<section>
+					<h1>Benchmark it</h1>
+					<pre class="fragment"><code data-trim contenteditable class="bash">
+$ script/compare_solvers.pl SolverInitial SolverWithoutMoose
+                   s/iter      SolverInitial SolverWithoutMoose
+SolverInitial        12.7                 --               -13%
+SolverWithoutMoose   11.0                15%                 --
+          </code></pre>
+        </section>
+
+				<section>
+					<h1>WIN</h1>
+        </section>
+
+				<section>
+					<h1>Sub calls are expensive</h1>
+        </section>
+
+				<section>
+					<h1>What if?</h1>
+          <div class="fragment">
+            <small>From:</small>
+					  <pre><code data-trim contenteditable class="perl">
+sub move_board {
+    ...
+    for (x) {
+        $self->shift_row(@array);
+    }
+    ...
+}
+
+sub shift_row {
+    ...
+    shift_row_stuff;
+    ...
+}
+            </code></pre>
+          </div>
+          <div class="fragment">
+            <small>To: </small>
+   					<pre><code data-trim contenteditable class="perl">
+sub move_board {
+    ...
+    for (x) {
+        shift_row_stuff;
+    }
+    ...
+}
+            </code></pre>
+          </div>
+        </section>
+
+				<section>
+					<h1>Benchmark it</h1>
+					<pre class="fragment"><code data-trim contenteditable class="bash">
+$ script/compare_solvers.pl SolverInitial SolverLessMethods
+                  s/iter     SolverInitial SolverLessMethods
+SolverInitial       13.3                --              -41%
+SolverLessMethods   7.85               69%                --
+          </code></pre>
         </section>
 
 				<section>
@@ -220,28 +585,81 @@
         </section>
 
 				<section data-background="#8c4738">
-					<h1>Wilcard</h1>
+					<h1>Control slide</h1>
 				</section>
 
 				<section>
+					<h1>We are improving... but</h1>
+          <img src="img/slow.gif">
+        </section>
+
+				<section>
 					<h1>Parallelization</h1>
+          <img src="img/parallel.gif">
         </section>
 
 				<section>
-					<h1>module Fork</h1>
+          <h1>Module</h1><h2>Parallel::ForkManager</h2>
+        </section>
+
+        <section>
+          <h2>Forking</h2>
+					<pre><code data-trim contenteditable class="perl">
+my %scores = ();
+
+my $pm = Parallel::ForkManager->new(4 * $self->forks_x_dir);
+
+for (1..$self->forks_x_dir) {
+    for my $direction (0,1,2,3) {
+        my @moved_board = $self->move_board($direction, @board);
+
+        if ( !$self->same_board(@moved_board, @board) ) {
+            $pm->start and next;
+            srand(time + $direction);
+            my $score;
+            for (1..($self->moves/$self->forks_x_dir)) {
+                $score += $self->play_random_game(@moved_board);
+            }
+            $pm->finish(0, \[$direction, $score]);
+        }
+    }
+}
+
+$pm->wait_all_children;
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Receiving data</h2>
+					<pre><code data-trim contenteditable class="perl">
+$pm->run_on_finish (
+    sub {
+        my ($pid, $code, $ident, $signal, $cd, $data_structure_reference) = @_;
+
+        if (defined($data_structure_reference)) {
+          $scores{${$data_structure_reference}->[0]} += ${$data_structure_reference}->[1];
+        }
+    }
+);
+          </code></pre>
         </section>
 
 				<section>
-					<h1>show code</h1>
-          explicar pq forks > 4
+          <h1>Forks > 4</h1>
         </section>
 
 				<section>
-					<h1>Benchmark parallel</h1>
+					<h1>Benchmark it</h1>
+					<pre class="fragment"><code data-trim contenteditable class="bash">
+src$ script/compare_solvers.pl SolverInitial SolverParallelMulti
+                    s/iter SolverParallelMulti       SolverInitial
+SolverParallelMulti   19.7                  --                -35%
+SolverInitial         12.8                 54%                  --
+          </code></pre>
         </section>
 
 				<section>
-          <h1>????</h1>
+          <img src="img/wat.jpg">
         </section>
 
 				<section>
@@ -249,7 +667,36 @@
         </section>
 
 				<section>
-					<h1>time</h1>
+					<h1>Do your best to Benchmark it</h1>
+
+          <div class="fragment">
+            <p>4 cores:</p>
+            <pre><code data-trim contenteditable class="bash">
+$ time CLASS=SolverInitial script/various_moves.pl 
+
+real  0m49.875s
+user  0m49.848s
+sys   0m0.000s
+$ time CLASS=SolverParallelMulti script/various_moves.pl 
+
+real  0m24.267s
+user  1m25.400s
+sys   0m0.092s
+            </code></pre>
+            <p>8 cores:</p>
+            <pre><code data-trim contenteditable class="bash">
+$ time CLASS=SolverInitial script/various_moves.pl 
+
+real  0m39.925s
+user  0m39.904s
+sys   0m0.012s
+$ time CLASS=SolverParallelMulti script/various_moves.pl 
+
+real  0m12.012s25s
+user  0m52.049s
+sys   0m0.128s
+            </code></pre>
+          </div>
         </section>
 
 				<section>
@@ -257,20 +704,17 @@
         </section>
 
 				<section>
-					<h1>Més coses?</h1>
+					<h1>When to stop?</h1>
         </section>
 
 				<section>
-					<h1>Benchmark same_board</h1>
-        </section>
-
-				<section>
-					<h1>Recapitulem</h1>
-          Ajuntar mètodes
-          No fer servir accessors de moose
-          Evitar creació d'arrays
-          (tot per reduir crides)
-          Paralelitzar
+					<h1>Summarizing</h1>
+          <ul>
+            <li class="fragment">Reduce the number of methods</li>
+            <li class="fragment">Avoid moose accessors</li>
+            <li class="fragment">Less array munging, less calls</li>
+            <li class="fragment">Parallelize</li>
+          </ul>
         </section>
 
 				<section>
@@ -278,23 +722,51 @@
         </section>
 
 				<section>
-					<h1>Benchmark all_together</h1>
+					<h1>Benchmark it</h1>
+					<pre class="fragment"><code data-trim contenteditable class="bash">
+src$ time CLASS=SolverInitial script/various_moves.pl 
+
+real  0m39.013s
+user  0m38.013s969s
+sys   0m0.024s
+$ time CLASSS=Solver script/various_moves.pl 
+
+real  0m4.860s
+user  0m20.046s
+sys   0m0.113s
+marc@z1:~/work/talks/2048-strikes-back/src$ 
+          </code></pre>
         </section>
 
 				<section>
-					<h1>Try it</h1>
+					<h1>Does it work?</h1>
+          <h1 class="fragment"><b>YES</b></h1>
         </section>
 
 				<section>
-					<h1>GIF</h1>
-        </section>
-
-				<section>
-					<h1>Com de bo és?</h1>
+					<h1>Does it win?</h1>
+          <h1 class="fragment"><b>YES</b></h1>
         </section>
 
 				<section>
 					<h1>Stats</h1>
+          <small>Or the worst lies</small>
+          <div></div>
+
+          <ul>
+            <li>Win ratio: ~80%</li>
+            <li>Time to win: ~15m</li>
+            <li>Avg move: 1s</li>
+            <li>Best piece: 2048</li>
+          </ul>
+        </section>
+
+				<section>
+					<h1>Also..</h1>
+        </section>
+
+				<section>
+					<h1>4x time boost!</h1>
         </section>
 
 				<section>
@@ -302,24 +774,52 @@
         </section>
 
 				<section>
-					<h1>Altres coses que podría haver fet</h1>
+					<h1>I would have</h1>
+          <ul>
+            <li class="fragment">Custom Memoize</li>
+            <li class="fragment">GOTO</li>
+            <li class="fragment">More Perl Black Magic</li>
+            <li class="fragment">Perl6?</li>
+          </ul>
         </section>
 
 				<section>
 					<h1>Conclusions</h1>
-          have code (from 0 to 100)
-          profile
-          test (must go first)
-          benchmark
+          <small>For performance improvement</small>
+          <div></div>
+          <ul>
+            <li class="fragment">Do code! 1/0 improve</li>
+            <li class="fragment">Profile</li>
+            <li class="fragment">Test your code (should be first?)</li>
+            <li class="fragment">Benchmark changes</li>
+            <li class="fragment"><b>Profit!</b></li>
+          </ul>
         </section>
 
+				<section>
+					<h1>Pro tips for talks</h1>
+          <ul>
+            <li class="fragment">Take time to prepare the talk</li>
+            <li class="fragment">(Some people say if you finish the talk more than an our early you're doing it wrong)</li>
+            <li class="fragment">If you don't have time <b class="fragment">use all the gifs you can!</b></li></li>
+          </ul>
+        </section>
 
 				<section data-background="#8c4738">
 					<h1>THANKS!</h1>
 				</section>
 
 				<section>
+          <ul class="do">
+            <li>It's all wrong! you're so stupid</li>
+            <li>There's another module to do it</li>
+            <li>Fool me in general</li>
+          </ul>
+				</section>
+
+        <section>
 					<h1>Questions?</h1>
+          <img src="2048-final.gif">
 				</section>
 
 			</div>
