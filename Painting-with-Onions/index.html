@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+
+		<title>Painting with Onions</title>
+
+		<meta name="description" content="Painting with Onions">
+		<meta name="author" content="Marc Egea i Sala">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="../reveal.js/css/reveal.css">
+		<link rel="stylesheet" href="../reveal.js/css/theme/night.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+
+		<!--[if lt IE 9]>
+		<script src="/reveal.js/lib/js/html5shiv.js"></script>
+		<![endif]-->
+    <style>
+      code {
+        font-size: 1.5em !important;
+        line-height: 110% !important;
+      }
+      .reveal section ul.good li:before {
+        content: ' ✔';
+        color: green;
+      }
+      .reveal section ul.bad li:before {
+        content: ' ✗';
+        color: red;
+      }
+      .reveal section ul.bad,
+      .reveal section ul.good {
+        list-style: none;
+        margin-right: 1em;
+      }
+      .reveal section ul.bad li:before,
+      .reveal section ul.good li:before {
+        margin-left: -1.5em;
+        margin-right: .100em;
+      }
+    </style>
+	</head>
+
+	<body>
+		<div class="reveal">
+
+			<div class="slides">
+				<section>
+          <h1><b>Painting with Onions</b></h1>
+          <p>
+            <a href="http://meis.github.io/talks/Painting-with-Onions">http://meis.github.io/talks/Painting-with-Onions</a>
+            ||
+            <a href="http://twitter.com/m_e_i_s">@m_e_i_s</a>
+          </p>
+				</section>
+			</div>
+
+			<div class="slides">
+				<section>
+          <p>Ladies and gentlemen, welcome to the</p>
+					<h1>DISCLAIMER</h1>
+          (Sorry for the lack of kitties and memes)
+				</section>
+			</div>
+
+			<div class="slides css">
+				<section>
+					<h1>WHO HATES CSS?</h1>
+					<h1 class="fragment">Everyone?</h1>
+				</section>
+			</div>
+
+			<div class="slides css">
+				<section>
+					<h1>IT IS NOT CSS's FAULT</h1>
+					<h2 class="fragment">(entirely)</h1>
+				</section>
+			</div>
+
+			<div class="slides css">
+				<section>
+					<h1>CSS is for HTML</h1>
+					<h2 class="fragment">HTML is for DOCUMENTS</h1>
+				</section>
+			</div>
+
+			<div class="slides css">
+				<section>
+					<h1>CSS problems</h1>
+				</section>
+			</div>
+
+			<div class="slides css">
+				<section>
+					<h1>CSS problems</h1>
+          <h2>Multiple implementations</h2>
+				</section>
+			</div>
+
+			<div class="slides css">
+				<section>
+					<h1>CSS problems</h1>
+          <h2>Cascade</h2>
+<pre class="fragment"><code data-trim contenteditable class="css">
+body {
+  color: red
+}
+button {
+  font-family: Comic Sans;
+}
+</code></pre>
+          <p class="fragment">Also, not all the properties work the same way (tables, em, etc)</p>
+				</section>
+			</div>
+
+			<div class="slides css">
+				<section>
+					<h1>CSS problems</h1>
+          <h2>GLOBALS</h2>
+<pre class="fragment"><code data-trim contenteditable class="css">
+body {
+  color: red
+}
+button {
+  font-family: Comic Sans;
+}
+</code></pre>
+				</section>
+			</div>
+
+			<div class="slides css">
+				<section>
+					<h1>CSS problems</h1>
+          <h2>"I've changed my mind" extension method</h2>
+<pre class="fragment"><code data-trim contenteditable class="css">
+button {
+  font-family: Comic Sans;
+}
+...
+
+button {
+  font-family: Any other font, please;
+}
+</code></pre>
+				</section>
+			</div>
+
+			<div class="slides css">
+				<section>
+					<h1>CSS problems</h1>
+          <h2>Non-standard module system</h2>
+          <p class="fragment">Bower?</p>
+          <p class="fragment">Last include wins</p>
+				</section>
+			</div>
+
+			<div class="slides css">
+				<section>
+					<h1>CSS problems</h1>
+          <h2>Paths of files</h2>
+<pre class="fragment"><code data-trim contenteditable class="css">
+.icon {
+  width: 32px;
+  height: 32px;
+  background: url(path/to/my/icon.png))
+}
+</code></pre>
+				</section>
+			</div>
+
+			<div class="slides css">
+				<section>
+					<h1>CSS problems</h1>
+          <h2>Backward compatibility</h2>
+          Don't break the internet
+				</section>
+			</div>
+
+			<div class="slides css">
+				<section>
+					<h1>CSS problems</h1>
+          <h2>We don't see CSS as code</h2>
+				</section>
+			</div>
+
+			<div class="slides approaches">
+				<section>
+					<h1>Current approaches</h1>
+          <h2 class="fragment">And why I don't like them</h2>
+				</section>
+			</div>
+
+			<div class="slides approaches">
+				<section>
+					<h1>LESS, SASS & family</h1>
+          <h2>Preprocessors</h2>
+          <ul class="good">
+            <li class="fragment">Variables</li>
+            <li class="fragment">Import/include files</li>
+            <li class="fragment">CSS compatible</li>
+            <li class="fragment">Mixins</li>
+          </ul>
+				</section>
+			</div>
+
+			<div class="slides approaches">
+				<section>
+					<h1>LESS, SASS & family</h1>
+          <h2>Preprocessors</h2>
+          <ul class="bad">
+            <li class="fragment">Cascade</li>
+            <li class="fragment">Globals</li>
+            <li class="fragment">No standard 'extend' method</li>
+          </ul>
+				</section>
+			</div>
+
+			<div class="slides approaches">
+				<section>
+					<h1>CSS frameworks</h1>
+          <h2>(Bootstrap)</h2>
+          <ul class="good">
+            <li class="fragment">Minium effort</li>
+            <li class="fragment">Allows theming</li>
+            <li class="fragment">You can extend (with work)</li>
+          </ul>
+				</section>
+			</div>
+
+			<div class="slides approaches">
+				<section>
+					<h1>CSS frameworks</h1>
+          <ul class="bad">
+            <li class="fragment">You're tied (it's not your HTML anymore)</li>
+            <li class="fragment">You can theme OR extend</li>
+            <li class="fragment">Frameworks don't mix well</li>
+          </ul>
+				</section>
+			</div>
+
+			<div class="slides approaches">
+				<section>
+					<h1>CSS in JS</h1>
+          <h2>(Angular, React, Polymer, etc)</h2>
+          CSS in the template system
+<pre><code data-trim contenteditable class="javascript">
+var style = { color: 'white' };
+
+React.render(<div style={style}>Hi!</div>, mountNode);
+</code></pre>
+				</section>
+			</div>
+
+			<div class="slides approaches">
+				<section>
+					<h1>CSS in JS</h1>
+          <ul class="good">
+            <li class="fragment">Extensible</li>
+            <li class="fragment">Real programming language</li>
+            <li class="fragment">Avoid globals</li>
+            <li class="fragment">Can be distributed (npm)</li>
+          </ul>
+				</section>
+			</div>
+
+			<div class="slides approaches">
+				<section>
+					<h1>CSS in JS</h1>
+          <ul class="bad">
+            <li class="fragment">Coupling templates with style</li>
+            <li class="fragment">Impossible to reuse outside the framework</li>
+            <li class="fragment">Cascade is still present</li>
+            <li class="fragment">Hard to cache</li>
+            <li class="fragment">Corner cases: @media?</li>
+          </ul>
+				</section>
+			</div>
+
+			<div class="slides control">
+				<section data-background="#8c4738">
+					<h1>CONTROL SLIDE</h1>
+				</section>
+			</div>
+
+			<div class="slides perl">
+				<section>
+					<h1>Can Perl help?</h1>
+					<h2 class="fragment">I think so</h1>
+				</section>
+			</div>
+
+			<div class="slides perl">
+				<section>
+					<h1>My Approach</h1>
+          <ul>
+            <li class="fragment">Using a real programming language
+              <ul>
+                <li class="fragment">Perl</li>
+              </ul>
+            </li>
+          </ul>
+				</section>
+			</div>
+
+			<div class="slides perl">
+				<section>
+					<h1>My Approach</h1>
+          <ul>
+            <li class="fragment">Compile to CSS
+              <ul>
+                <li class="fragment">Compatibility</li>
+                <li class="fragment">Use your own markup</li>
+                <li class="fragment">Cache</li>
+              </ul>
+            </li>
+          </ul>
+				</section>
+			</div>
+
+			<div class="slides perl">
+				<section>
+					<h1>My Approach</h1>
+          <ul>
+            <li class="fragment">Let the compiler be the CSS expert
+              <ul>
+                <li class="fragment">Specificity</li>
+                <li class="fragment">Performance</li>
+                <li class="fragment">Dependencies</li>
+              </ul>
+            </li>
+          </ul>
+				</section>
+			</div>
+
+			<div class="slides perl">
+				<section>
+					<h1>My Approach</h1>
+          <h2>Ideas using Moose</h2>
+          <ul>
+            <li class="fragment">Components</li>
+            <li class="fragment">Manifests</li>
+            <li class="fragment">Compiler</li>
+          </ul>
+				</section>
+			</div>
+
+			<div class="slides perl">
+				<section>
+					<h1>Onions::Component</h1>
+          <h2>UI element</h2>
+        </sectioN>
+			</div>
+
+			<div class="slides perl">
+				<section>
+					<h1>Onions::Component</h1>
+
+<pre><code data-trim contenteditable class="perl">
+package My::Button;
+use Moose;
+extends 'Onions::Component';
+
+sub _build_attributes {{
+  color  => 'green',
+  border => '1px solid black',
+}}
+</code></pre>
+				</section>
+			</div>
+
+			<div class="slides perl">
+				<section>
+					<h1>Onions::Component</h1>
+<pre><code data-trim contenteditable class="perl">
+package My::FancyButton;
+use Moose;
+extends 'My::Button';
+
+sub _build_attributes {{
+  color  => 'red',
+  border => '1px solid black',
+}}
+</code></pre>
+				</section>
+			</div>
+
+			<div class="slides perl">
+				<section>
+					<h1>Onions::Component</h1>
+<pre><code data-trim contenteditable class="perl">
+package My::PerlIcon;
+extends 'Onions::Component';
+
+sub _build_attributes {{
+  background_image => $_[0]->files('image');
+}}
+
+sub _build_files {{
+  image => 'file_in_this_package',
+}}
+</code></pre>
+				</section>
+			</div>
+
+			<div class="slides perl">
+				<section>
+					<h1>Onions::Manifest</h1>
+          <h2>Export variables</h2>
+				</section>
+			</div>
+
+			<div class="slides perl">
+				<section>
+					<h1>Onions::Manifest</h1>
+<pre><code data-trim contenteditable class="perl">
+package Onions::Manifest::DesktopApp;
+use Moose;
+extends 'Onions::Manifest';
+
+sub _build_variables {{
+  font_family   => 'Comic Sans',
+  font_size     => '12px',
+  window_border => '1px solid black',
+  button_color  => 'green',
+}}
+</code></pre>
+				</section>
+			</div>
+
+			<div class="slides perl">
+				<section>
+					<h1>Onions::Manifest</h1>
+<pre><code data-trim contenteditable class="perl">
+package My::DesktopApp::Theme
+extends 'Onions::Manifest:DesktopApp';
+
+sub _build_variables {{
+  font_family   => 'Comic Sans',
+  font_size     => '18px',
+  button_color  => 'red',
+}}
+</code></pre>
+				</section>
+			</div>
+
+			<div class="slides perl">
+				<section>
+					<h1>Onions::Manifest</h1>
+<pre><code data-trim contenteditable class="perl">
+package My::Button;
+
+with_manifest 'DA' => 'Onions::Manifest::DesktopApp';
+
+sub _build_attributes {
+  my $self = shift;
+  {
+    font_family => $self->variablre('DA', 'font_family'),
+    font_size   => $self->variablre('DA', 'font_size'),
+    color       => $self->variablre('DA', 'button_color'),
+  }
+}
+</code></pre>
+				</section>
+			</div>
+
+			<div class="slides perl">
+				<section>
+					<h1>Onions</h1>
+<pre><code data-trim contenteditable class="perl">
+my $o = Onions->new();
+
+$o->let('button')
+  ->be('Onions::Component::Button')
+  ->with_theme('DA', 'My::DesktopApp::Theme');
+
+$o->let('#icon-perl')->be('My::PerlIcon');
+
+$o->files_root('/img');
+$o->dump_files('path/to/img');
+$o->dump_css('path/to/file.css');
+</code></pre>
+        </section>
+			</div>
+
+			<div class="slides perl">
+				<section>
+					<h1>Onions</h1>
+<pre><code data-trim contenteditable class="css">
+button {
+  font-family: Comic Sans;
+  font-size: 12px;
+  color: red;
+}
+#icon-perl {
+  background: url('/img/MyPerlIconImage.png');
+}
+</code></pre>
+				</section>
+			</div>
+
+			<div class="slides perl">
+				<section>
+					<h1>Key points</h1>
+          <ul>
+            <li class="fragment">Components define ALL the styles</li>
+            <li class="fragment">Compiler will use cascading (or not)</li>
+            <li class="fragment">Themeable + Extensible frameworks</li>
+            <li class="fragment">Multiple Manifests at the same time</li>
+            <li class="fragment">Applying components to selectors prevents clashes</li>
+            <li class="fragment">We can use CPAN to distribute components</li>
+            <li class="fragment">Files stored wherever you want</li>
+          </ul>
+				</section>
+			</div>
+
+			<div class="slides perl">
+				<section>
+					<h1>Key points</h1>
+          <ul>
+            <li class="fragment">Final CSS is usable outside Perl world</li>
+            <li class="fragment">Don't mix with CSS!!</li>
+          </ul>
+				</section>
+			</div>
+
+			<div class="slides thanks">
+				<section>
+					<h1>Thank you</h1>
+				</section>
+			</div>
+
+			<div class="slides questions">
+				<section>
+					<h1>Questions?</h1>
+				</section>
+			</div>
+
+    </div>
+
+		<script src="../reveal.js/lib/js/head.min.js"></script>
+		<script src="../reveal.js/js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: '../reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '../reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '../reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: '../reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+  </body>
+</html>
