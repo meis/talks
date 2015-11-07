@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Perl (CPAN) vs 2048</title>
+
+		<meta name="description" content="Talk about a 2048 solver in Perl">
+		<meta name="author" content="Marc Egea i Sala">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/2048.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+      <header>
+        <div class="header-wrapper">
+          <span class="tile tile-2">   <span class="tile-text">About me</span></span>
+          <span class="tile tile-4">   <span class="tile-text">The talk</span></span>
+          <span class="tile tile-8">   <span class="tile-text">2048</span></span>
+          <span class="tile tile-16">  <span class="tile-text">The plan</span></span>
+          <span class="tile tile-32">  <span class="tile-text">Minimax</span></span>
+          <span class="tile tile-64">  <span class="tile-text">The gears</span></span>
+          <span class="tile tile-128"> <span class="tile-text">My code</span></span>
+          <span class="tile tile-256"> <span class="tile-text">Does it work?</span></span>
+          <span class="tile tile-512"> <span class="tile-text">To improve</span></span>
+          <span class="tile tile-1024"><span class="tile-text">Conclusions</span></span>
+          <span class="tile tile-2048"><span class="tile-text">Thank you</span></span>
+        </div>
+      </header>
+
+			<div class="slides">
+				<section>
+          <h1>
+            <div>Perl (CPAN)</div> <div>vs</div> <div>2048</div>
+          </h1>
+				</section>
+
+        <section class="about-me" data-state="header-2 header-visible">
+          <div style="">
+            <ul>
+              <li>Marc Egea i Sala (<a href="https://github.com/meis">github.com/meis</a>)</li>
+              <li><a href="http://twitter.com/m_e_i_s">@m_e_i_s</a></li>
+              <li><a href="http://barcelona.pm.org/">Barcelona.pm</a></li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="about-talk" data-state="header-4 header-visible">
+          <section>
+            <h3><a href="http://workshop.granada.pm">Granada
+                Perl Workshop'14</a></h3>
+            <p>(NO SPOILERS)</p>
+            <p>&nbsp;</p>
+            <p>Available:</p>
+            <p><a href="https://github.com/meis/talks/tree/master/Perl-vs-2048">https://github.com/meis/talks/tree/master/Perl-vs-2048</a></p>
+          </section>
+        </section>
+
+        <section class="about-talk" data-state="header-4 header-visible">
+          <section>
+            <ul>
+              <li class>A different talk<span class="fragment">: writing code to play (and win) 2048</span></li>
+              <li class="fragment">I don't give talks about topics I master</li>
+              <li class="fragment">Talk driven learning</li>
+              <li class="fragment">Started to code 4 days before the workshop</li>
+            </ul>
+          </section>
+        </section>
+
+        <section data-state="header-8 header-visible">
+          <img src="img/2048.jpg" class="crude"/>
+          <ul>
+            <li>by <a href="http://gabrielecirulli.com/">Gabriele Cirulli</a>
+              > <a href="https://itunes.apple.com/us/app/1024!/id823499224">1024</a>
+              > <a href="http://asherv.com/threes/">Threes</a>
+            </li>
+            <li>Famous</li>
+            <li>Adictive</li>
+            <li>Random (but not so much)</li>
+          </ul>
+        </section>
+
+        <section data-state="header-16 header-visible">
+          <ul>
+            <li>No time to code!!</li>
+            <li class="fragment">Need a prototype fast</li>
+            <li class="fragment">Dive into <a href="http://stackoverflow.com/questions/22342854/what-is-the-optimal-algorithm-for-the-game-2048">Stack Overflow</a></li>
+            <li class="fragment">Minimax, sounds familiar</li>
+          </ul>
+        </section>
+
+        <section data-state="header-32 header-visible">
+          <section>
+            <ul>
+              <li>Decision Algorithm (von Neumann 1926) </li>
+              <li>Minimize loose</li>
+              <li>Tree with all possible boards</li>
+              <li>Evaluation function for each board</li>
+            </ul>
+          </section>
+        </section>
+
+        <section data-state="header-32 header-visible">
+          <section>
+            <img src="img/minimax-6-0.png" />
+          </section>
+        </section>
+
+        <section data-state="header-32 header-visible">
+          <section>
+            <h3>Using in 2048</h3>
+            <ul>
+              <li class="fragment">Any possible moves</li>
+              <li class="fragment">Deep limit</li>
+              <li class="fragment">Evaluation function</li>
+            </ul>
+          </section>
+        </section>
+
+        <section data-state="header-64 header-visible">
+          <section>
+            <h2>CPAN for the Win!</h2>
+          </section>
+        </section>
+
+        <section data-state="header-64 header-visible">
+          <section>
+            <h3>Game logic</h3>
+            <ul>
+              <li><a href="https://metacpan.org/pod/Games::2048">Games::2048</a>, by <a href="https://metacpan.org/author/BLAIZER">Blaise Roth</a> </li>
+              <li class="fragment through-after">Only keyboard input</li>
+              <div class="fragment">
+                <li>Can plug a bot (<b>in 20 hours!!</b>)</li>
+                <li>Just extend the class</li>
+              </div>
+            </ul>
+          </section>
+        </section>
+
+        <section data-state="header-64 header-visible">
+          <section>
+            <h3>Minimax</h3>
+            <ul>
+              <li><a href="https://metacpan.org/pod/Games::AlphaBeta">Games::AlphaBeta</a>, by <a href="https://metacpan.org/author/STIG">Stig Brautaset</a> </li>
+              <li>Minimax with alpha-beta pruning</li>
+            </ul>
+          </section>
+        </section>
+
+        <section data-state="header-128 header-visible">
+          <section>
+            <p>Available in:</p>
+            <p><a href="https://github.com/meis/Games-2048-AI-AlphaBeta">https://github.com/meis/Games-2048-AI-AlphaBeta</a></p>
+          </section>
+        </section>
+
+        <section data-state="header-128 header-visible">
+          <section>
+            <h3>AlphaBeta::Position</h3>
+            <ul>
+              <li class="code">findmoves</li>
+              <li class="code">apply</li>
+              <li class="code">evaluate (mostly stolen)</li>
+            </ul>
+          </section>
+        </section>
+
+        <section data-state="header-256 header-visible">
+          <section>
+            <h2>DID IT WORK???</h2>
+          </section>
+        </section>
+
+        <section data-state="header-256 header-visible">
+          <section>
+            <h2>Yes!</h2>
+            <img src="img/win.png" />
+            <p class="fragment">(Mi current record is 58.7k)</p>
+          </section>
+        </section>
+
+        <section data-state="header-256 header-visible">
+          <section>
+            <h2>Well, sometimes...</h2>
+            <img src="img/loose.png" />
+          </section>
+        </section>
+
+        <section data-state="header-256 header-visible">
+          <section>
+            <h3>Depending on deep</h3>
+            <p>&nbsp;</p>
+            <ul>
+              <li class="fragment"><b>1 level</b>: Fast loosing (< 1m games)</li>
+              <li class="fragment"><b>2 levels</b>: Not so fast loosing</li>
+              <li class="fragment"><b>3 levels</b>: Winning in half an hour</li>
+              <li class="fragment"><b>4 levels</b>: Sometimes win in 2 hours</li>
+              <li class="fragment"><b>5 levels</b>: Life's too short</li>
+            </ul>
+          </section>
+        </section>
+
+        <section data-state="header-1024 header-visible">
+          <section>
+            <h3>Conclusions</h3>
+            <ul>
+              <li>Bad performance</li>
+              <li class="fragment">Not the best approach</li>
+              <li class="fragment">Prototype: CPAN + Glue</li>
+              <li class="fragment">Someone probably did it before</li>
+              <li class="fragment">Prototype first, optimize later</li>
+              <li class="fragment"><b>Prepare the subject before the talk proposal</b></li>
+            </ul>
+          </section>
+        </section>
+
+        <section data-state="header-2048 header-visible">
+          <section>
+            <h3>Thank you</h3>
+          </section>
+        </section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
